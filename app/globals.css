@@ -87,12 +87,16 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
   html {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 }
 

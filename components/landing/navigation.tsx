@@ -16,6 +16,21 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const targetId = href.replace("#", "");
+    if (!targetId) return;
+
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -56,6 +71,7 @@ export function Navigation() {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
                 className={`text-sm transition-colors duration-300 relative group ${isScrolled ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"}`}
               >
                 {link.name}
@@ -69,12 +85,6 @@ export function Navigation() {
             <a href="#" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
               Sign in
             </a>
-            <Button
-              size="sm"
-              className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
-            >
-              Deploy agent
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,7 +119,10 @@ export function Navigation() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  handleSmoothScroll(e, link.href);
+                }}
                 className={`text-5xl font-display text-foreground hover:text-muted-foreground transition-all duration-500 ${
                   isMobileMenuOpen 
                     ? "opacity-100 translate-y-0" 
@@ -122,8 +135,8 @@ export function Navigation() {
             ))}
           </div>
           
-          {/* Bottom CTAs */}
-          <div className={`flex gap-4 pt-8 border-t border-foreground/10 transition-all duration-500 ${
+          {/* Bottom CTA */}
+          <div className={`pt-8 border-t border-foreground/10 transition-all duration-500 ${
             isMobileMenuOpen 
               ? "opacity-100 translate-y-0" 
               : "opacity-0 translate-y-4"
@@ -132,16 +145,10 @@ export function Navigation() {
           >
             <Button 
               variant="outline" 
-              className="flex-1 rounded-full h-14 text-base"
+              className="w-full rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Sign in
-            </Button>
-            <Button 
-              className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Deploy agent
             </Button>
           </div>
         </div>
