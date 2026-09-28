@@ -4,35 +4,33 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const footerLinks = {
-  Product: [
-    { name: "Agent capabilities", href: "#features" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Pricing", href: "#pricing" },
+  Platform: [
+    { name: "Capabilities", href: "#features" },
+    { name: "How It Works", href: "#how-it-works" },
+    { name: "Infrastructure", href: "#infra" },
     { name: "Integrations", href: "#integrations" },
+    { name: "Security", href: "#security" },
   ],
-  Developers: [
+  Resources: [
     { name: "Documentation", href: "#developers" },
-    { name: "Agent SDK", href: "#" },
-    { name: "API Reference", href: "#developers" },
+    { name: "API", href: "#developers" },
+    { name: "Changelog", href: "#" },
     { name: "Status", href: "#" },
   ],
   Company: [
     { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#", badge: "Hiring" },
+    { name: "Careers", href: "#" },
     { name: "Contact", href: "#" },
   ],
   Legal: [
     { name: "Privacy", href: "#" },
     { name: "Terms", href: "#" },
-    { name: "Security", href: "#security" },
   ],
 };
 
 const socialLinks = [
-  { name: "Twitter", href: "#" },
-  { name: "GitHub", href: "#" },
-  { name: "LinkedIn", href: "#" },
+  { name: "GitHub", href: "https://github.com/torikuljony" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/torikul-jony/" },
 ];
 
 function AnimatedWaveCanvas() {
@@ -115,12 +113,12 @@ export function FooterSection() {
             {/* Brand Column */}
             <div className="col-span-2">
               <a href="#" className="inline-flex items-center gap-2 mb-6">
-                <span className="text-2xl font-display text-white">COMPUTE</span>
+                <span className="text-2xl font-display text-white">NEXORA</span>
                 <span className="text-xs text-white/40 font-mono">TM</span>
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Autonomous AI agents for distributed computing. Delegate complex tasks to intelligent workers.
+                Intelligent infrastructure for the next generation of AI.
               </p>
 
               {/* Social Links */}
@@ -129,6 +127,8 @@ export function FooterSection() {
                   <a
                     key={link.name}
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1 group"
                   >
                     {link.name}
@@ -150,11 +150,6 @@ export function FooterSection() {
                         className="text-sm text-white/40 hover:text-white transition-colors inline-flex items-center gap-2"
                       >
                         {link.name}
-                        {"badge" in link && link.badge && (
-                          <span className="text-xs px-2 py-0.5 bg-white text-black rounded-full">
-                            {link.badge}
-                          </span>
-                        )}
                       </a>
                     </li>
                   ))}
@@ -167,13 +162,13 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2025 COMPUTE. All rights reserved.
+            &copy; 2026 NEXORA. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4 text-sm text-white/30">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#eca8d6]" />
-              All agents operational
+              All systems operational
             </span>
           </div>
         </div>

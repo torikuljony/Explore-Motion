@@ -4,6 +4,7 @@ import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/goo
 import { Analytics } from '@vercel/analytics/next'
 import 'lenis/dist/lenis.css'
 import { SmoothScroll } from '@/components/smooth-scroll'
+import { AuthProvider } from '@/components/auth-provider'
 import './globals.css'
 
 const instrumentSans = Instrument_Sans({ 
@@ -23,9 +24,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'COMPUTE - AI Agents for Distributed Computing',
-  description: 'Deploy autonomous AI agents on distributed infrastructure. Offload complex tasks to intelligent workers that run 24/7.',
-  generator: 'v0.app',
+  title: 'NEXORA - Intelligent Infrastructure for AI',
+  description: 'Build, deploy, and manage AI workflows on reliable, scalable infrastructure designed for speed and consistent performance.',
 }
 
 export default function RootLayout({
@@ -36,7 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <SmoothScroll>{children}</SmoothScroll>
+        <AuthProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

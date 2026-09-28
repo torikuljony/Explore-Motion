@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const FEATURES = [
   {
@@ -211,10 +212,11 @@ export function FeaturesSection() {
 
             {/* Right: Mirrored Image, Full Height */}
             <div className="hidden lg:block relative w-[42%] shrink-0 overflow-hidden">
-              <img
+              <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2812%29-ng3RrNnsPMJ5CrtOjcPTmhHg01W11q.png"
                 alt=""
                 aria-hidden="true"
+                fill
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 style={{ transform: "scaleX(-1)" }}
               />
