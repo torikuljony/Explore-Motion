@@ -2,13 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const WORDS = ["automate", "delegate", "execute", "scale"];
+const WORDS = ["build", "deploy", "automate", "scale"];
 const GRADIENT_COLORS = ["#eca8d6", "#a78bfa", "#67e8f9", "#fbbf24", "#eca8d6"];
 
 const STATS_DATA = [
-  { value: "3500+", label: "autonomous agents active" },
-  { value: "99.7%", label: "distributed uptime" },
-  { value: "<50ms", label: "execution latency" },
+  { value: "2,400+", label: "AI workflows running" },
+  { value: "99.95%", label: "platform uptime" },
+  { value: "<80ms", label: "average response time" },
 ];
 
 interface BlurWordProps {
@@ -36,9 +36,6 @@ function BlurWord({ word, trigger }: BlurWordProps) {
     timersRef.current.forEach(clearTimeout);
     framesRef.current = [];
     timersRef.current = [];
-
-    setLetterStates(letters.map(() => ({ opacity: 0, blur: 20 })));
-    setShowGradient(true);
 
     // Stagger each letter
     letters.forEach((_, i) => {
@@ -122,7 +119,8 @@ export function HeroSection() {
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
-    setIsVisible(true);
+    const frame = requestAnimationFrame(() => setIsVisible(true));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -191,7 +189,7 @@ export function HeroSection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-white/60">
               <span className="w-8 h-px bg-white/30" />
-              Autonomous AI agents for distributed computing
+              Intelligent infrastructure for modern AI teams
             </span>
           </div>
 
@@ -202,11 +200,11 @@ export function HeroSection() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <span className="block whitespace-nowrap">Distributed compute,</span>
+              <span className="block whitespace-nowrap">AI infrastructure,</span>
               <span className="block whitespace-nowrap">
-                agents that{" "}
+                systems that{" "}
                 <span className="relative inline-block">
-                  <BlurWord word={WORDS[wordIndex]} trigger={wordIndex} />
+                  <BlurWord key={wordIndex} word={WORDS[wordIndex]} trigger={wordIndex} />
                 </span>
               </span>
             </h1>
