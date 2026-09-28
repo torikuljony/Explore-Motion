@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     number: "01",
-    title: "Define",
-    subtitle: "your agent",
-    description: "Describe what your agent should do. Set its capabilities, constraints, and goals in natural language or code.",
+    title: "Build",
+    subtitle: "",
+    description: "Define your AI workflow, connect your models and tools, and configure exactly how your system should operate.",
     code: `const researcher = new Agent({
   role: 'Research Analyst',
   capabilities: ['web', 'docs', 'api'],
@@ -17,9 +17,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Assign",
-    subtitle: "the task",
-    description: "Give your agent a mission. It breaks down complex tasks into steps and executes them autonomously.",
+    title: "Deploy",
+    subtitle: "",
+    description: "Launch your workflow on scalable infrastructure and make it available wherever your application needs it.",
     code: `await researcher.execute({
   task: 'Analyze competitor pricing',
   sources: ['public-data', 'news'],
@@ -29,9 +29,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Monitor",
-    subtitle: "& scale",
-    description: "Track progress in real-time. Spin up more agents as needed. Pay only for compute used.",
+    title: "Scale",
+    subtitle: "",
+    description: "Monitor performance, handle growing workloads, and scale your AI systems automatically as demand changes.",
     code: `optimus.dashboard({
   agents: [researcher],
   metrics: ['tasks', 'latency', 'cost'],
@@ -81,17 +81,23 @@ export function HowItWorksSection() {
             <div className={`transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}>
               <span className="inline-flex items-center gap-3 text-sm font-mono text-white/40 mb-8">
                 <span className="w-12 h-px bg-white/20" />
-                Process
+                HOW NEXORA WORKS
               </span>
             </div>
             
             <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.85] transition-all duration-1000 delay-100 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
             }`}>
-              <span className="block">Define.</span>
-              <span className="block text-white/30">Deploy.</span>
-              <span className="block text-white/10">Scale.</span>
+              <span className="block">From idea</span>
+              <span className="block text-white/30">to intelligent</span>
+              <span className="block text-white/10">execution.</span>
             </h2>
+
+            <p className={`mt-8 max-w-md text-white/60 leading-relaxed transition-all duration-1000 delay-200 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}>
+              Build, deploy, and manage AI workflows through a simple infrastructure designed for speed and scale.
+            </p>
           </div>
 
           {/* Image cerisier — se colle en bas sur les blocs */}
@@ -137,12 +143,14 @@ export function HowItWorksSection() {
               </div>
 
               {/* Title */}
-              <h3 className="text-3xl lg:text-4xl font-display mb-2">
+              <h3 className={`text-3xl lg:text-4xl font-display ${step.subtitle ? "mb-2" : "mb-6"}`}>
                 {step.title}
               </h3>
-              <span className="text-xl text-white/40 font-display block mb-6">
-                {step.subtitle}
-              </span>
+              {step.subtitle && (
+                <span className="text-xl text-white/40 font-display block mb-6">
+                  {step.subtitle}
+                </span>
+              )}
 
               {/* Description */}
               <p className={`text-white/60 leading-relaxed transition-opacity duration-300 ${
